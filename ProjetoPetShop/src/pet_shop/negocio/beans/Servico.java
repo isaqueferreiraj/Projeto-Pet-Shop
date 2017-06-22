@@ -7,14 +7,14 @@ public class Servico {
 	private long id;
 	private String nome;
 	private double preco;
-	private boolean consulta;
+	private boolean necessitaConsulta;
 	
 	public Servico(String nome, double preco, boolean consulta) {
 		this.id = proximoID;
 		proximoID++;
 		this.nome = nome;
 		this.preco = preco;
-		this.consulta = consulta;
+		this.necessitaConsulta = consulta;
 	}
 
 	public long getId() {
@@ -38,17 +38,17 @@ public class Servico {
 	}
 	
 	public boolean isConsulta() {
-		return consulta;
+		return necessitaConsulta;
 	}
 
 	public void setConsulta(boolean consulta) {
-		this.consulta = consulta;
+		this.necessitaConsulta = consulta;
 	}
 
 	public String toString() {
 		String text ="ID: " + this.id + "\nNome do produto: " + this.nome + "\nPreço: R$" + String.format("%.2f", this.preco) + "\nConsulta: ";
 		
-		if (this.consulta == true) {
+		if (this.necessitaConsulta == true) {
 			text += "Sim";
 		} else {
 			text += "Não";
@@ -66,7 +66,7 @@ public class Servico {
 		if (getClass() != obj.getClass())
 			return false;
 		Servico other = (Servico) obj;
-		if (consulta != other.consulta)
+		if (necessitaConsulta != other.necessitaConsulta)
 			return false;
 		if (nome == null) {
 			if (other.nome != null)

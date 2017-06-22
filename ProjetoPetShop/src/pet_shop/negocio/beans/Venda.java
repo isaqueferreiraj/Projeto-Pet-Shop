@@ -8,36 +8,36 @@ public class Venda {
 	private static long proximoID = 1;
 	
 	private long id;
-	private Cliente cliente;
-	private ArrayList<Servico> servicos;
+	private Funcionario funcionario;
+	private ArrayList<Atendimento> atendimentos;
 	private ArrayList<Produto> produtos;
 	private LocalDate data;
 	private double valorTotal;
 	
-	public Venda(Cliente cliente, ArrayList<Servico> servicos, ArrayList<Produto> produtos, LocalDate data) {
+	public Venda(Funcionario funcionario, ArrayList<Atendimento> atendimentos, ArrayList<Produto> produtos, LocalDate data) {
 		this.id = proximoID;
 		proximoID++;
-		this.cliente = cliente;
-		this.servicos = servicos;
+		this.funcionario = funcionario;
+		this.atendimentos = atendimentos;
 		this.produtos = produtos;
 		this.data = data;
-		this.valorTotal = valorServicos() + valorProdutos();
+		this.valorTotal = valorAtendimentos() + valorProdutos();
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
-	public ArrayList<Servico> getServicos() {
-		return servicos;
+	public ArrayList<Atendimento> getAtendimentos() {
+		return atendimentos;
 	}
 
-	public void setServicos(ArrayList<Servico> servicos) {
-		this.servicos = servicos;
+	public void setAtendimentos(ArrayList<Atendimento> atendimentos) {
+		this.atendimentos = atendimentos;
 	}
 
 	public ArrayList<Produto> getProdutos() {
@@ -74,7 +74,7 @@ public class Venda {
 		}
 	}
 	
-	public void remover(long id) {
+	public void removerProduto(long id) {
 		boolean achou = false;
 		for (int i = 0; i < this.produtos.size() && achou == false; i++) {
 			if (this.produtos.get(i).getId() == id) {
@@ -84,26 +84,26 @@ public class Venda {
 		}
 	}
 	
-	public void adicionarServico(Servico s) {
+	public void adicionarAtendimento(Atendimento s) {
 		if (s != null) {
-			this.servicos.add(s);
+			this.atendimentos.add(s);
 		}
 	}
 	
-	public void removerServico(long id) {
+	public void removerAtendimento(long id) {
 		boolean achou = false;
-		for (int i = 0; i < this.servicos.size() && achou == false; i++) {
-			if (this.servicos.get(i).getId() == id) {
-				this.servicos.remove(i);
+		for (int i = 0; i < this.atendimentos.size() && achou == false; i++) {
+			if (this.atendimentos.get(i).getId() == id) {
+				this.atendimentos.remove(i);
 				achou = true;
 			}
 		}
 	}
 	
-	private double valorServicos() {
+	private double valorAtendimentos() {
 		double valorTotalServicos = 0;
-		for (int i = 0; i < this.servicos.size(); i++) {
-			valorTotalServicos += this.servicos.get(i).getPreco();
+		for (int i = 0; i < this.atendimentos.size(); i++) {
+			valorTotalServicos += this.atendimentos.get(i).getServico().getPreco();
 		}
 		return valorTotalServicos;
 	}
@@ -117,7 +117,7 @@ public class Venda {
 	}
 	
 	public String toString() {
-		String text = "ID: " + this.id + "\nData: " + this.data + "\n Nome do cliente: " + this.cliente.getNome() + "\nProduto(s): ";
+		String text = "ID: " + this.id + "\nData: " + this.data + "\n Nome do funcionário: " + this.funcionario.getNome() + "\nProduto(s): ";
 		
 		for (int i = 0; i < this.produtos.size(); i++) {
 			text += String.format("\n%20s \t%.2f", this.produtos.get(i).getNome(), this.produtos.get(i).getPreco());
@@ -125,8 +125,8 @@ public class Venda {
 		
 		text += "\nServiço(s): ";
 		
-		for (int i = 0; i < this.servicos.size(); i++) {
-			text += String.format("\n%20s \t%.2f", this.servicos.get(i).getNome(), this.servicos.get(i).getPreco());
+		for (int i = 0; i < this.atendimentos.size(); i++) {
+			text += String.format("\n%20s \t%.2f", this.atendimentos.get(i).getServico().getNome(), this.atendimentos.get(i).getServico().getPreco());
 		}
 		
 		text += "\n\nValor Total: " + String.format("%.2f", this.valorTotal);

@@ -9,18 +9,18 @@ public class Atendimento {
 	private long id;
 	private Animal animal;
 	private Funcionario funcionario;
-	private Venda compra;
+	private Servico servico;
 	private LocalDate data;
-	private String observacao;
+	private String diagnostico;
 	
-	public Atendimento(Animal animal, Funcionario funcionario, Venda compra, LocalDate data, String observacao) {
+	public Atendimento(Animal animal, Funcionario funcionario, Servico servico, LocalDate data, String diagnostico) {
 		this.id = proximoID;
 		proximoID++;
 		this.animal = animal;
 		this.funcionario = funcionario;
-		this.compra = compra;
+		this.servico = servico;
 		this.data = data;
-		this.observacao = observacao;
+		this.diagnostico = diagnostico;
 	}
 
 	public Animal getAnimal() {
@@ -39,12 +39,12 @@ public class Atendimento {
 		this.funcionario = funcionario;
 	}
 
-	public Venda getCompra() {
-		return compra;
+	public Servico getServico() {
+		return servico;
 	}
 
-	public void setCompra(Venda compra) {
-		this.compra = compra;
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 
 	public LocalDate getData() {
@@ -56,11 +56,11 @@ public class Atendimento {
 	}
 
 	public String getObservacao() {
-		return observacao;
+		return diagnostico;
 	}
 
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	public void setObservacao(String diagnostico) {
+		this.diagnostico = diagnostico;
 	}
 
 	public long getId() {
@@ -69,7 +69,7 @@ public class Atendimento {
 	
 	public String toString() {
 		return "\nID: " + this.id + "\nNome do animal: " + this.animal.getNome() + "\nNome do funcionário: " + this.funcionario.getNome() 
-		+ "\n" + this.compra + "\nData: " + this.data + "\nObservação: " + this.observacao;
+		+ "\n" + this.servico + "\nData: " + this.data + "\nObservação: " + this.diagnostico;
 	}
 
 	@Override
@@ -86,10 +86,10 @@ public class Atendimento {
 				return false;
 		} else if (!animal.equals(other.animal))
 			return false;
-		if (compra == null) {
-			if (other.compra != null)
+		if (servico == null) {
+			if (other.servico != null)
 				return false;
-		} else if (!compra.equals(other.compra))
+		} else if (!servico.equals(other.servico))
 			return false;
 		if (data == null) {
 			if (other.data != null)
@@ -101,10 +101,10 @@ public class Atendimento {
 				return false;
 		} else if (!funcionario.equals(other.funcionario))
 			return false;
-		if (observacao == null) {
-			if (other.observacao != null)
+		if (diagnostico == null) {
+			if (other.diagnostico != null)
 				return false;
-		} else if (!observacao.equals(other.observacao))
+		} else if (!diagnostico.equals(other.diagnostico))
 			return false;
 		return true;
 	}
