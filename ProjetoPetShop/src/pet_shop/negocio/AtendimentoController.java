@@ -24,7 +24,10 @@ public class AtendimentoController {
 	
 	public void saveAtendimento(Atendimento atendimento) {
 		
-		if(atendimento != null && (!this.atendimentoRepository.existe(atendimento))) {
+		if( (atendimento != null) && (!this.atendimentoRepository.existe(atendimento)) && (atendimento.getAnimal() != null) 
+				&& (atendimento.getCompra() != null) && (atendimento.getData() != null) && (atendimento.getFuncionario() != null)
+				&& (atendimento.getObservacao() != null) ) {
+			
 			this.atendimentoRepository.cadastrarAtendimento(atendimento);
 		}
 		
@@ -34,7 +37,10 @@ public class AtendimentoController {
 		
 		Atendimento a = this.atendimentoRepository.listarAtendimento(atendimento.getId());
 		
-		if(a != null) {
+		if( (a != null) && (atendimento.getAnimal() != null) && (atendimento.getCompra() != null) 
+				&& (atendimento.getData() != null) && (atendimento.getFuncionario() != null) 
+				&& (atendimento.getObservacao() != null) ) {
+			
 			this.atendimentoRepository.alterarAtendimento(atendimento);
 		}
 		
@@ -58,7 +64,7 @@ public class AtendimentoController {
 		
 	}
 	
-	public ArrayList<Atendimento> listarTudo() {
+	public ArrayList<Atendimento> listarTodosAtendimentos() {
 		return this.atendimentoRepository.listarTudo();
 	}
 

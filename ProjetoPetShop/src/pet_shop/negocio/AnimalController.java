@@ -25,7 +25,10 @@ public class AnimalController {
 	//Controle dos métodos do repositório
 	public void saveAnimal(Animal animal) {
 		
-		if(animal != null && (!this.animalrepository.existe(animal))) {
+		if( (animal != null) && (!this.animalrepository.existe(animal)) && (animal.getDono() != null) 
+				&& (animal.getDataNascimento() != null) && (animal.getEspecie() != null) 
+				&& (animal.getNome() != null) && (animal.getPeso() < 0) && (animal.getRaca() != null) ) {
+			
 			this.animalrepository.cadastrarAnimal(animal);
 		}
 		
@@ -35,7 +38,9 @@ public class AnimalController {
 		
 		Animal a = this.animalrepository.listarAnimal(animal.getId());
 		
-		if(a != null) {
+		if( (a != null) && (animal.getDataNascimento() != null) && (animal.getDono() != null) && (animal.getEspecie() != null) 
+				&& (animal.getNome() != null) && (animal.getPeso() < 0) && (animal.getRaca() != null)) {
+			
 			this.animalrepository.alterarAnimal(animal);
 		}
 		
@@ -59,7 +64,7 @@ public class AnimalController {
 		
 	}
 	
-	public ArrayList<Animal> listarTudo() {
+	public ArrayList<Animal> listarTodosAnimais() {
 		return this.animalrepository.listarTudo();	
 	}
 
