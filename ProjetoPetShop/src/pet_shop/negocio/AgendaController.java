@@ -43,14 +43,16 @@ public class AgendaController {
 	
 	public void updateAgenda(Agenda newAgenda) {
 		
-		Agenda a = this.agendaRepository.listarAgenda(newAgenda.getId());
-		
-		if( (a != null) && (newAgenda.getAnimal() != null) 
-				&& (newAgenda.getDataMarcada() != null) && (newAgenda.getServicos() != null) ) {
+		if (newAgenda != null) {			
+			Agenda a = this.agendaRepository.listarAgenda(newAgenda.getId());
 			
-			this.agendaRepository.alterarAgenda(newAgenda);
+			if( (a != null) && (newAgenda.getAnimal() != null) 
+					&& (newAgenda.getDataMarcada() != null) && (newAgenda.getServicos() != null) ) {
+				
+				this.agendaRepository.alterarAgenda(newAgenda);
+			}			
 		}
-		
+				
 	}
 	
 	public void deleteAgenda(long id) {
