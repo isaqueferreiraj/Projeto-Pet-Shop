@@ -61,4 +61,35 @@ public class AgendaDAO {
 		return this.repositorioAgenda;
 	}
 	
+	public int procurarID(long id) {
+		
+		boolean achou = false;
+		int i = 0;
+		
+		while((!achou) && (i < this.repositorioAgenda.size())) {
+			
+			if(this.repositorioAgenda.get(i).getId() == id) {
+				achou = true;
+			} else {
+				i++;
+			}
+			
+		}
+		
+		return i;
+		
+	}
+	
+	public boolean existe(long id) {
+		
+		boolean existe = false;
+		int indice = procurarID(id);
+		
+		if(indice != repositorioAgenda.size()) {
+			existe = true;
+		}
+		
+		return existe;
+	}
+	
 }
