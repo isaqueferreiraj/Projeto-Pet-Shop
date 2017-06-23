@@ -36,12 +36,14 @@ public class AnimalController {
 	
 	public void updateAnimal(Animal animal) {
 		
-		Animal a = this.animalrepository.listarAnimal(animal.getId());
-		
-		if( (a != null) && (animal.getDataNascimento() != null) && (animal.getDono() != null) && (animal.getEspecie() != null) 
-				&& (animal.getNome() != null) && (animal.getPeso() < 0) && (animal.getRaca() != null)) {
+		if(animal != null) {
+			Animal a = this.animalrepository.listarAnimal(animal.getId());
 			
-			this.animalrepository.alterarAnimal(animal);
+			if( (a != null) && (animal.getDataNascimento() != null) && (animal.getDono() != null) && (animal.getEspecie() != null) 
+					&& (animal.getNome() != null) && (animal.getPeso() < 0) && (animal.getRaca() != null)) {
+				
+				this.animalrepository.alterarAnimal(animal);
+			}
 		}
 		
 	}
