@@ -61,6 +61,7 @@ public class AnimalDAO {
 		return this.repositorioAnimal;
 	}
 	
+	//método existe em overloading
 	public boolean existe(Animal a) {
 		boolean verificar = false;
 		for (int i = 0; i < this.repositorioAnimal.size() && verificar == false; i++) {
@@ -70,4 +71,23 @@ public class AnimalDAO {
 		}
 		return verificar;
 	}
+	
+	public boolean existe(long id) {
+		
+		boolean existe = false;
+		int i = 0;
+		
+		while((!existe) && (i < this.repositorioAnimal.size())) {
+			
+			if(id == this.repositorioAnimal.get(i).getId()) {
+				existe = true;
+			} else {
+				i++;
+			}
+				
+		}
+		
+		return existe;
+	}
+	
 }
