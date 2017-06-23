@@ -61,6 +61,7 @@ public class AtendimentoDAO {
 		return this.repositorioAtendimento;
 	}
 	
+	//método existe em overloading
 	public boolean existe(Atendimento a) {
 		boolean verificar = false;
 		for (int i = 0; i < this.repositorioAtendimento.size() && verificar == false; i++) {
@@ -69,5 +70,24 @@ public class AtendimentoDAO {
 			}
 		}
 		return verificar;
+	}
+	
+	public boolean existe(long id) {
+		
+		boolean existe = false;
+		int i = 0;
+		
+		while((!existe) && (i < this.repositorioAtendimento.size())) {
+			
+			if(id == this.repositorioAtendimento.get(i).getId()) {
+				existe = true;
+			} else {
+				i++;
+			}
+			
+		}
+		
+		return existe;
+		
 	}
 }
