@@ -25,7 +25,9 @@ public class AgendaController {
 	//Controle dos métodos do repositório
 	public void saveAgenda(Agenda agenda) {
 		
-		if(agenda != null && (!agendaRepository.existe(agenda.getId()))) {
+		if( (agenda != null) && (!agendaRepository.existe(agenda.getId())) && (agenda.getAnimal() != null) 
+				&& (agenda.getDataMarcada() != null) && (agenda.getServicos() != null) ) {
+			
 			this.agendaRepository.cadastrarAgenda(agenda);
 		}
 		
@@ -43,7 +45,9 @@ public class AgendaController {
 		
 		Agenda a = this.agendaRepository.listarAgenda(newAgenda.getId());
 		
-		if(a != null) {
+		if( (a != null) && (newAgenda.getAnimal() != null) 
+				&& (newAgenda.getDataMarcada() != null) && (newAgenda.getServicos() != null) ) {
+			
 			this.agendaRepository.alterarAgenda(newAgenda);
 		}
 		
@@ -57,7 +61,7 @@ public class AgendaController {
 		
 	}
 	
-	public ArrayList<Agenda> listarTudo() {
+	public ArrayList<Agenda> listarTodasAgendas() {
 		return this.agendaRepository.listarTudo();
 	}
 	

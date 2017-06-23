@@ -1,9 +1,13 @@
 package pet_shop;
 
+import pet_shop.gui.TextualUserInterface;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		TextualUserInterface textUI = new TextualUserInterface();
+		textUI.showUserInterface();
 
 	}
 
