@@ -1,14 +1,24 @@
 package pet_shop.negocio;
 
+import java.util.ArrayList;
+
 import pet_shop.DAO.ProdutoDAO;
 import pet_shop.negocio.beans.Produto;
 
 public class CadastroProdutos {
 	
 	private ProdutoDAO repositorioProdutos;
+	private static CadastroProdutos instance;
 	
-	public CadastroProdutos(ProdutoDAO instanciaRepositorio) {
-	    this.repositorioProdutos = instanciaRepositorio;
+	private CadastroProdutos() {
+        this.repositorioProdutos = ProdutoDAO.getInstance(); 
+    }
+	
+	public static CadastroProdutos getInstance() {
+		if(instance == null)
+			instance = new CadastroProdutos();
+		
+		return instance;
 	}
 	
 	//Cadastro do produto
@@ -47,5 +57,20 @@ public class CadastroProdutos {
 	//Exclui o produto de acordo com o id repassado
 	public void excluirProduto(long id){
 		this.repositorioProdutos.excluirProduto(id);
+	}
+
+	//Listar todos os produtos
+	public ArrayList<Produto> listarTudo(){
+		return this.repositorioProdutos.listarTudo();
+	}
+	
+	public void AlteraProduto(Produto novoProduto) {
+		Produto p = this.repositorioProdutos.listarProduto(novoProduto.getId());
+		if( (p != null) && (novoProduto.getNome() != null)) {
+			this.repositorioProdutos.alterarProduto(novoProduto);
+		}
+		else {
+			System.out.println("Aqui ficará a exceção");
+		}
 	}
 }
